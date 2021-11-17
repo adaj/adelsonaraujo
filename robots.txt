@@ -1,1 +1,1 @@
-Sitemap: https://adaj.github.io/adelsonaraujo/sitemap.xml
+Sitemap: https://adaj.github.io/blog/sitemap.xml
