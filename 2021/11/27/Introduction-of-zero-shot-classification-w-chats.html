@@ -77,7 +77,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      8 min read
+      11 min read
     
 </span></p>
 
@@ -117,6 +117,29 @@ window.onload = wrap_img;
 
 <div class="container" id="notebook-container">
         
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr />
+<p>In this notebook, I would like to make a rapid introduction to zero-shot classification for practitioners. We will cover what it is and explore a use case.</p>
+<p>This is not a comprehensive tutorial, nor does it discuss efficient approaches. Still, it's more like a taste of zero-shot classification in practice for those with no experience with it.</p>
+<p>After being positively surprised with my toy examples, I prepared this notebook. I wanted to share what I see as a potentially game-changing technique to apply machine learning when ground-truth labels are unavailable or are costly to be collected.</p>
+<p>In conclusion, I mention some takeaways that I see on how zero-shot classification cal help in pipelines of feature engineering since you can use its output of intermediary (perhaps even self-explainable) variables to other systems.</p>
+<h2 id="Zero-shot-classification,-what-is-that?!">Zero-shot classification, what is that?!<a class="anchor-link" href="#Zero-shot-classification,-what-is-that?!"> </a></h2><p>To be more accurate, zero-shot classification is referred to in the ML literature as zero-shot learning. Up until now, I have used classification to avoid an initial confusion with the "learning" term. In the toy code below, I explore its use in inference time, which I referred to as classification.</p>
+<p>But, first, a few words on what is zero-shot learning. <a href="https://qr.ae/pGl1ss">Ian Goodfellow's wrote in Quora the following answer</a>.</p>
+
+<pre><code>Zero-shot learning is being able to solve a task despite not having received any training examples of that task.</code></pre>
+<p>He answered the question quite some time ago, so this is not a new thing.</p>
+<p>The most common example you will see out there about zero-shot learning is the zebra example. Suppose you only trained your model with horses. Now you want to classify a zebra, but your model doesn't know about it. But if you are able to say to the model that "zebra"s (a new label) are striped and horse-like (features), a model able to perform zero-shot learning can correctly identify that zebra.</p>
+<p>Joe Davison wrote recently about zero-shot learning, where he greatly explains successes in the field of transfer learning that allowed models to perform surprisingly well in several use cases.</p>
+<p>As far as I can see, zero-shot classification (inference) has been more materialized recently with advances in transfer learning and is particularly accessible through HuggingFace's transformer library. New architectures are being proposed and because there are some interesting datasets where bigger models can be pre-trained. More people are using pre-trained models and engaging in transfer learning pipelines.</p>
+<h2 id="Okay,-but-labeling-without-training-samples-is-really-doable?">Okay, but labeling without training samples is really doable?<a class="anchor-link" href="#Okay,-but-labeling-without-training-samples-is-really-doable?"> </a></h2><p>Zero-shot learning is a particular form of transfer learning. That there are different ways to do the job, and techniques vary in computer vision and NLP. Of course, I still want to see more studies discussing interrater reliability with these kind of tools in a diverse set of scenarios to have a stronger argument on using it "in the wild".</p>
+<p>In this notebook, we will walk through how you can put your hands in some unlabeled text data and label it automatically using models available from HuggingFace's <code>transformers</code>.</p>
+<h2 id="I-don't-have-too-much-time.-Can-you-show-me-this-quickly?">I don't have too much time. Can you show me this quickly?<a class="anchor-link" href="#I-don't-have-too-much-time.-Can-you-show-me-this-quickly?"> </a></h2><p>Sure, I understand. First, I will show a small demonstration.</p>
+<p>If you want to go through a second example, I will use some data from DOTA-2 chats to classify them as one of the following <code>candidate_labels = ['chitchat', 'game features', 'coordination', 'toxic offense', 'gender discrimination', 'religious intolerance', 'racism']</code>. This data is in Russian, so we have a translation step in between that we may loose some information. Also we are not carrying too much in preprocessing steps, but they are indeed required for more serious projects. Also, it seems that there are zero-shot models in a few other languages available out there, such as French, Spanish, German, even Russian. See a list from HuggingFace <a href="https://huggingface.co/models?pipeline_tag=zero-shot-classification&amp;sort=downloads">models</a>.</p>
+
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Example-1:-Reasoning-or-personal-impression?">Example 1: Reasoning or personal impression?<a class="anchor-link" href="#Example-1:-Reasoning-or-personal-impression?"> </a></h2><p>This is an example taken from <a href="https://dl.acm.org/doi/pdf/10.1145/3231644.3231655">Fiacco &amp; Rosé (2018)</a>.</p>
