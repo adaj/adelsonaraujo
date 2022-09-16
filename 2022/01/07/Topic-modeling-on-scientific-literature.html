@@ -77,7 +77,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      4 min read
+      7 min read
     
 </span></p>
 
@@ -117,6 +117,46 @@ window.onload = wrap_img;
 
 <div class="container" id="notebook-container">
         
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Topic modeling algorithms, according to Blei (2012), are statistical techniques that examine the words of the original texts to find the themes that run through them, how those themes are connected, and how they change over time.  </p>
+<p>One of the reasons for their wide use is that all these algorithms can be applied to a corpus of unlabeled texts, and discover latent features to reflect themes or topics that occur in the corpus. </p>
+<p>The current most widely used topic modeling algorithms include Latent Dirichlet Allocation (LDA, Blei et al., 2003), Probabilistic Latent Semantic Analysis (pLSA, Hofmann, 1999) and its extension Non-negative Matrix Factorization (NMF, Lee and Seung, 1999).</p>
+<p>The current use of topic modeling is in a variety of fields. In computational linguistics and natural language processing, topic modeling is used to discover hidden topics in documents. In text mining, the clustering of text documents into groups of similar topics is of interest.</p>
+<p>In an ambitious scenario, some might suggest that topic modeling can be used to find hidden or latent social structures in the text of online forums. But more modestly, I think we can walk together with this notebook through the introductory steps needed to implement topic modeling analysis on scientific texts.</p>
+<p>With the help of the definition stated in the beginning, we chose to analyze the following factors:</p>
+<ul>
+<li>What are some of the literature's most popular topics? </li>
+<li>What links those topics together? </li>
+<li>How frequently were those topics covered over time?</li>
+</ul>
+<h2 id="Approach">Approach<a class="anchor-link" href="#Approach"> </a></h2><p>The code below provides a gist on how to leverage topic modeling on scientific literature (PDFs).</p>
+<p>I recommend doing this approach before conducting a systematic or scoping literature review in order to increase the eyesight of what you as a researcher should expect to see as topics that surround the papers under investigation.</p>
+<p>To illustrate the procedure, I collected some papers in three well-known search engines for scientific articles, namely Web of Science, Scopus and IEEE. In /data, you can find the queries used in each search engine, as well as the exported metadata. I cannot provide the results PDFs due to copyright issues.</p>
+<p>Query phrase: <code>( ( algorithm* OR automat* OR bot$ OR "artificial intelligence" ) AND ( financ* OR trading ) AND ( "social media" OR twitter OR facebook OR youtube OR reddit OR telegram ) AND ( manipulat* OR disinformation ) )</code></p>
+<p>If you use this code or find it interesting, please cite us!</p>
+
+<pre><code>@article{pohl2022social,
+  title={Social bots spreading disinformation about finance: research trends, and ethical challenges},
+  author={Pohl, Janina and Griesbach, Marie and Samiei, Alireza and Araujo, Adelson},
+  journal={In press},
+  volume={0},
+  number={0},
+  pages={0},
+  year={2022},
+  publisher={In press}
+}</code></pre>
+<p>Feel free to leave a comment with a suggestion.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Imports">Imports<a class="anchor-link" href="#Imports"> </a></h2>
+</div>
+</div>
+</div>
     
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -963,6 +1003,18 @@ Tip: Draw this in another software (e.g. draw.io) if you wish a prettier represe
 </div>
     
 
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="References">References<a class="anchor-link" href="#References"> </a></h3><ul>
+<li>Blei, D. M., Ng, A. Y., &amp; Jordan, M. I. (2003). Latent dirichlet allocation. Journal of machine Learning research, 3(Jan), 993-1022.</li>
+<li>Blei, D. M. (2012). Probabilistic topic models. Communications of the ACM, 55(4), 77-84.</li>
+<li>Hofmann, T. (1999). Probabilistic latent semantic indexing. In Proceedings of the 22nd annual international ACM SIGIR conference on Research and development in information retrieval (pp. 50-57).</li>
+<li>Lee, D. D., &amp; Seung, H. S. (1999). Learning the parts of objects by non-negative matrix factorization. Nature, 401(6755), 788-791.</li>
+</ul>
+
+</div>
+</div>
+</div>
 </div>
 
 
